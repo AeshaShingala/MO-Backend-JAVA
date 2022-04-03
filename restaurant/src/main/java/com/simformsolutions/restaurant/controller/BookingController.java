@@ -69,8 +69,7 @@ public class BookingController {
 			@RequestParam("quantity") int quantity, @RequestParam("frequency") int frequency,
 			@RequestParam("imageUrl") String imageUrl) {
 		Menu menu = new Menu(name, price, quantity, frequency, imageUrl);
-		// return new
-		// ResponseEntity<Restaurant>(restaurantRepo.findTablesById(restaurant.getRestaurantId()),HttpStatus.OK);
+	
 		return new ResponseEntity<Menu>(menuRepo.save(menu), HttpStatus.CREATED);
 
 	}
@@ -79,8 +78,6 @@ public class BookingController {
 	public ResponseEntity<Orders> ordersPost(@RequestParam("menuId") List<Long> ids , @RequestParam("name") List<String> names,
 			@RequestParam("price") List<Integer> prices, @RequestParam("quantity") List<Integer> quantities,
 			@RequestParam("frequency") List<Integer> frequencies, @RequestParam("imageUrl") List<String> imageUrls) {
-		// return new
-		// ResponseEntity<Restaurant>(restaurantRepo.findTablesById(restaurant.getRestaurantId()),HttpStatus.OK);
 		int size = frequencies.size();
 		ArrayList<Menu> menus = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
@@ -104,7 +101,6 @@ public class BookingController {
 	public ResponseEntity<Feedback> feedbackPost(@PathVariable("customerId") long customerId, @RequestParam("rating") int rating, @RequestParam("description") String description)
 	{
 		Feedback feedback = new Feedback(rating,description,customerRepo.findById(customerId).orElse(null));
-		//return new ResponseEntity<Restaurant>(restaurantRepo.findTablesById(restaurant.getRestaurantId()),HttpStatus.OK);
 		return new ResponseEntity<Feedback>(feedbackRepo.save(feedback),  HttpStatus.CREATED);
 		
 	}
